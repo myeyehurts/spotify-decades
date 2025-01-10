@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="/images/music-note-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
+    <title>Error</title>
+</head>
+<body>
+<main class="dashboard-main">
+    <div class="flex-column">
+        <h1 th:if="${error} != 'None'" th:text="'Error: ' + ${error}"></h1>
+        <div>
+            <a th:href="@{/}" class="light-button">Start</a>
+            <a th:href="@{/dashboard}" class="light-button">Dashboard</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

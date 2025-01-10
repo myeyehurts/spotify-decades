@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="/images/music-note-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <a href="dashboard">Spotify Decades</a>
+    <div class="flex-row">
+        <h3> Logged in as <span class="blue-text" th:text="${user}"></span></h3>
+        <a href="/logout">Log Out</a>
+    </div>
+</nav>
+<main th:if="${!decades.isEmpty()}">
+    <h1>Results (<span th:text="${tally}"></span> songs)</h1>
+    <div class="results-container">
+        <div id="tabs">
+            <h4 class="tab-header" id="list-header">List</h4>
+            <h4 class="tab-header">Bar Graph</h4>
+            <h4 class="tab-header">Pie Chart</h4>
+        </div>
+        <!-- list display -->
+        <div class="tab" id="list">
+            <ul>
+                <li th:each="decade, count : ${decades}">
+                    <div class="flex-row">
+                        <h1 class="list-number" th:text="${count.index + 1 + '.'}"></h1>
+                        <div>
+                            <p><span class="year" th:style="'color: ' + ${decade.color}"
+                                     th:text="${decade.year} + 's'"></span></p>
+                            <p class="subtext">
+                                <span th:text="${decade.percentage}"></span>
+                                (<span th:text="${decade.tally}"></span> songs)
+                            </p>
+                        </div>
+                    </div>
+            </ul>
+        </div>
+        <!-- bar graph display -->
+        <div class="tab" id="bar-graph" style="--num-columns: [[${numDecades}]]">
+            <div class="bar-container" th:each="decade : ${decades}">
+                <div class="bar" th:style="'height: ' + ${decade.barSize} + '; background: ' + ${decade.color}"></div>
+                <p th:text="${decade.year} + 's'"></p>
+            </div>
+        </div>
+        <!-- pie chart display -->
+        <div class="tab">
+            <div id="chart-container">
+                <div id="chart" th:style="'background: conic-gradient(' + ${gradient} + ')'"></div>
+                <div id="chart-labels">
+                    <div class="label" th:each="decade: ${decades}">
+                        <div class="color-swatch" th:style="'background: ' + ${decade.color}"></div>
+                        <p th:text="${decade.year} + 's'"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<main th:if="${decades.isEmpty()}" class="none">
+    <div class="results-container">
+        <h2>You have no liked songs.</h2>
+        <p>Like some songs and then try out the app!</p>
+    </div>
+</main>
+<footer>
+    <p>© myeyehurts 2025</p>
+    <p>Not affiliated with Spotify</p>
+    <p>Rights to images go to their respective owners</p>
+</footer>
+<script src="/scripts/results.js"></script>
+</body>
+</html>

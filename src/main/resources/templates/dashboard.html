@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="/images/music-note-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
+</head>
+<body id="dashboard">
+<nav>
+    <a href="dashboard">Spotify Decades</a>
+    <div class="flex-row">
+        <h3> Logged in as <span class="blue-text" th:text="${user}"></span></h3>
+        <a href="/logout">Log Out</a>
+    </div>
+</nav>
+<main class="dashboard-main">
+    <div class="flex-column" id="dashboard-content">
+        <h1>Get Your Decade Stats</h1>
+        <p>This process will read your liked songs and tally them by decade.</p>
+        <form action="results" method="get" id="getSongs">
+            <input type="hidden" name="token" th:value="${token}"/>
+            <button type="submit" onclick="showLoading()" class="light-button">Proceed</button>
+        </form>
+    </div>
+    <div id="loading">
+        <h2>Tallying your songs...</h2>
+        <div class="flex-row">
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+            <div class="waveform"></div>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>© myeyehurts 2025</p>
+    <p>Not affiliated with Spotify</p>
+    <p>Rights to images go to their respective owners</p>
+</footer>
+<script src="/scripts/dashboard.js"></script>
+</body>
+</html>

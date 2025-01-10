@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Decades</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="/images/music-note-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
+    <!-- preload background images to avoid flickering effect -->
+    <link rel="preload" href="/images/beatles.jpg" as="image" type="image/jpg"/>
+    <link rel="preload" href="/images/beyonce.webp" as="image" type="image/webp"/>
+    <link rel="preload" href="/images/louis-armstrong.jpeg" as="image" type="image/jpeg"/>
+    <link rel="preload" href="/images/motley-crue.webp" as="image" type="image/webp"/>
+    <link rel="preload" href="/images/spice.jpg" as="image" type="image/jpg"/>
+</head>
+<body id="home-background">
+<main id="home-content">
+    <h1 id="title">Spotify Decades</h1>
+    <h2>Find out what decades are most prominent in your music!</h2>
+    <a th:href="@{/authorize}" id="authorize-button">Connect Your Spotify</a>
+</main>
+</body>
+</html>
